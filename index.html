@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Licor Canelinha</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />      
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -13,6 +14,7 @@
       background-color: #fff8f0;
       color: #49120B;
     }
+
     header {
       background: linear-gradient(90deg, #A52304, #49120B);
       padding: 1rem;
@@ -22,34 +24,60 @@
       height: auto;
       position: sticky;
       top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
+      z-index: 1001;
     }
+
     .logo-area {
       display: flex;
       align-items: center;
       gap: 1rem;
     }
+
     .logo-area img {
       height: 50px;
     }
+
     .logo-text {
       color: #fff;
       line-height: 1.2;
     }
+
     .logo-text strong {
       font-size: 1.2rem;
       display: block;
     }
+
+    /* Menu desktop */
+    nav.desktop-menu {
+      display: none;
+    }
+
     .hamburger {
       font-size: 1.8rem;
       color: #fff;
       cursor: pointer;
-      display: block;
+      z-index: 1102;
     }
-    .desktop-menu {
-      display: none;
+
+    /* Mobile menu overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 999;
     }
+    #overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -58,45 +86,45 @@
       height: 100vh;
       background-color: #A52304;
       color: #fff;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 1rem 1rem;
       transition: left 0.3s ease;
-      z-index: 999;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
     }
-    .mobile-menu h2 {
-      margin-bottom: 1.5rem;
-      font-size: 1.4rem;
+
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    /* Home title on top of menu */
+    .mobile-menu h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
       border-bottom: 1px solid #fff;
       padding-bottom: 0.5rem;
     }
+
     .mobile-menu a {
-      display: block;
       color: #fff;
       margin-bottom: 1rem;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.1rem;
     }
-    .mobile-menu.open {
-      left: 0;
+
+    .mobile-menu a:hover {
+      text-decoration: underline;
     }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      z-index: 998;
-    }
-    .overlay.active {
-      display: block;
-    }
+
     .image-gallery {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 0;
     }
+
     .image-gallery img {
       flex-shrink: 0;
       width: 100vw;
@@ -104,16 +132,19 @@
       object-fit: cover;
       scroll-snap-align: start;
     }
+
     section {
       padding: 2rem 1rem;
       text-align: center;
       max-width: 800px;
       margin: auto;
     }
+
     h1, h2 {
       margin-bottom: 1rem;
       color: #A52304;
     }
+
     .btn {
       display: inline-block;
       margin-top: 1rem;
@@ -126,110 +157,175 @@
       text-decoration: none;
       transition: 0.3s;
     }
+
     .btn:hover {
       opacity: 0.9;
     }
+
     ul {
       list-style: none;
       margin-top: 1rem;
       padding: 0;
     }
+
     ul li {
       margin: 0.5rem 0;
     }
+
     blockquote {
       font-style: italic;
       margin: 1rem 0;
       padding-left: 1rem;
       border-left: 3px solid #A52304;
     }
+
     footer {
       background: linear-gradient(90deg, #49120B, #A52304);
       color: #fff;
       text-align: center;
-      padding: 2rem 1rem 1rem;
+      padding: 2rem 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
     }
-    footer .logo-area {
-      justify-content: center;
-      margin-bottom: 1rem;
+
+    footer .footer-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
     }
-    footer p:last-child {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #e0e0e0;
+
+    footer .footer-logo img {
+      height: 50px;
     }
-    .whatsapp-button, .instagram-button {
+
+    footer .footer-logo strong {
+      font-size: 1.5rem;
+      line-height: 1.1;
+    }
+
+    footer .footer-logo span {
+      font-size: 1rem;
+      line-height: 1.1;
+    }
+
+    footer p.email {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    /* WhatsApp */
+    .whatsapp-button {
       position: fixed;
-      bottom: 20px;
+      bottom: 90px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
       width: 60px;
       height: 60px;
-      border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 2rem;
       text-decoration: none;
-      z-index: 1000;
+      z-index: 1102;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-    .whatsapp-button {
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-    }
+
+    /* Instagram button */
     .instagram-button {
-      right: 90px;
-      background-color: #fff;
-      color: #000;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #000;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      text-decoration: none;
+      z-index: 1102;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
     }
+
+    .instagram-button:hover {
+      background-color: #333;
+    }
+
     @media (min-width: 768px) {
       .image-gallery img {
         width: 33.33vw;
       }
+
       .hamburger {
         display: none;
       }
-      .desktop-menu {
+
+      nav.desktop-menu {
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
+        align-items: center;
+        color: #fff;
+      }
+
+      nav.desktop-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      nav.desktop-menu a:hover {
+        text-decoration: underline;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
   <header>
     <div class="logo-area">
-      <img src="logo.png" alt="Logo Canelinha">
+      <img src="logo.png" alt="Logo Canelinha" />
       <div class="logo-text">
         <strong>Canelinha</strong>
         <span>Bebidas Petisken</span>
       </div>
     </div>
-    <div class="desktop-menu">
+
+    <nav class="desktop-menu">
       <a href="#sobre">Sobre a Canelinha</a>
       <a href="#comprar">Onde Comprar</a>
       <a href="#contato">Contato</a>
-    </div>
+    </nav>
+
     <div class="hamburger" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
     </div>
   </header>
 
-  <nav id="menu" class="mobile-menu">
-    <h2>Home</h2>
+  <div id="overlay" onclick="closeMenu()"></div>
+
+  <nav id="menu" class="mobile-menu" aria-label="Menu lateral móvel">
+    <h3>Home</h3>
     <a href="#sobre" onclick="closeMenu()">Sobre a Canelinha</a>
     <a href="#comprar" onclick="closeMenu()">Onde Comprar</a>
     <a href="#contato" onclick="closeMenu()">Contato</a>
   </nav>
 
   <div class="image-gallery">
-    <img src="carrossel1.jpg" alt="Imagem 1">
-    <img src="carrossel2.jpg" alt="Imagem 2">
-    <img src="carrossel3.jpg" alt="Imagem 3">
-    <img src="carrossel4.jpg" alt="Imagem 4">
-    <img src="carrossel5.jpg" alt="Imagem 5">
-    <img src="carrossel6.jpg" alt="Imagem 6">
+    <img src="carrossel1.jpg" alt="Imagem 1" />
+    <img src="carrossel2.jpg" alt="Imagem 2" />
+    <img src="carrossel3.jpg" alt="Imagem 3" />
+    <img src="carrossel4.jpg" alt="Imagem 4" />
+    <img src="carrossel5.jpg" alt="Imagem 5" />
+    <img src="carrossel6.jpg" alt="Imagem 6" />
   </div>
 
   <section>
@@ -278,35 +374,31 @@
   </section>
 
   <footer>
-    <div class="logo-area">
-      <img src="logo.png" alt="Logo Canelinha">
-      <div class="logo-text">
-        <strong>Canelinha</strong>
-        <span>Bebidas Petisken</span>
-      </div>
+    <div class="footer-logo">
+      <img src="logo.png" alt="Logo Canelinha" />
+      <strong>Canelinha</strong>
+      <span>Bebidas Petisken</span>
     </div>
+    <p class="email">contato@canelinha.com</p>
     <p>© 2024 Licor Canelinha. Todos os direitos reservados.</p>
     <p>Canelinha Bebidas Petisken - Desenvolvido pela Hexatec</p>
   </footer>
 
-  <a href="https://wa.me/5514998527316" class="whatsapp-button" target="_blank">
+  <a href="https://wa.me/5514998527316" class="whatsapp-button" target="_blank" aria-label="Contato via WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
-  <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="instagram-button" target="_blank">
+
+  <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="instagram-button" target="_blank" aria-label="Instagram">
     <i class="fab fa-instagram"></i>
   </a>
 
   <script>
+    const menu = document.getElementById('menu');
+    const overlay = document.getElementById('overlay');
+
     function toggleMenu() {
-      const menu = document.getElementById('menu');
-      const overlay = document.getElementById('overlay');
       menu.classList.toggle('open');
       overlay.classList.toggle('active');
     }
-    function closeMenu() {
-      document.getElementById('menu').classList.remove('open');
-      document.getElementById('overlay').classList.remove('active');
-    }
-  </script>
-</body>
-</html>
+
+   
