@@ -7,19 +7,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #2c0d07;
-      color: #fff3e6;
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #2e0b06;
+      color: #fff5eb;
     }
 
     .mobile-header {
+      background: #49120B;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #49120B;
       padding: 1rem;
       position: sticky;
       top: 0;
@@ -32,115 +36,182 @@
     }
 
     .logo {
-      height: 40px;
-      margin-right: 0.5rem;
+      height: 50px;
+      margin-right: 10px;
     }
 
     .logo-text {
-      color: #fff3e6;
       display: flex;
       flex-direction: column;
-      font-size: 0.9rem;
+      line-height: 1;
     }
 
-    .canelinha {
+    .logo-text .canelinha {
+      font-size: 1.2rem;
       font-weight: bold;
-      font-size: 1.1rem;
+    }
+
+    .logo-text .sub {
+      font-size: 0.75rem;
     }
 
     .menu-toggle {
       background: none;
       border: none;
-      color: #fff3e6;
+      color: white;
       font-size: 1.5rem;
     }
 
     .mobile-nav {
       position: fixed;
       top: 0;
-      left: 0;
+      left: -250px;
       width: 200px;
-      height: 100vh;
-      background-color: #A52304;
-      color: #fff;
-      padding: 2rem 1rem;
-      display: none;
+      height: 100%;
+      background: #A52304;
+      display: flex;
       flex-direction: column;
+      padding-top: 4rem;
       gap: 1rem;
-      z-index: 9999;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+      transition: left 0.3s ease;
+      z-index: 1100;
     }
 
     .mobile-nav.active {
-      display: flex;
+      left: 0;
     }
 
     .mobile-nav a {
-      color: #fff3e6;
+      color: #fff;
       text-decoration: none;
-      font-size: 1.1rem;
+      padding: 1rem;
+      font-weight: bold;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      display: none;
+    }
+
+    .overlay.active {
+      display: block;
     }
 
     .image-gallery {
       position: relative;
-      display: flex;
-      align-items: center;
       overflow: hidden;
-      background-color: #49120B;
+      white-space: nowrap;
       padding: 1rem 0;
+      background-color: #3a0e09;
     }
 
     .gallery-track {
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
-      gap: 1rem;
     }
 
     .gallery-track img {
-      height: 180px;
-      border-radius: 8px;
+      height: 200px;
+      margin-right: 1rem;
+      border-radius: 10px;
     }
 
     .arrow {
-      background: none;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
       border: none;
-      color: #fff3e6;
-      font-size: 2rem;
+      color: white;
+      font-size: 1.5rem;
       cursor: pointer;
-      padding: 0 1rem;
+      z-index: 10;
     }
 
-    .hero, section {
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    section {
       padding: 2rem;
       text-align: center;
     }
 
     .hero h1 {
       font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .btn {
-      background-color: #A52304;
-      color: #fff;
+      display: inline-block;
+      background: #A52304;
+      color: white;
       padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 1rem;
-      display: inline-block;
     }
 
     footer {
       background: #49120B;
-      color: #fff3e6;
-      padding: 2rem 1rem;
+      color: white;
       text-align: center;
+      padding: 2rem 1rem 1rem;
+    }
+
+    footer .footer-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    footer .footer-sub {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      text-decoration: none;
+    }
+
+    .floating-instagram {
+      bottom: 20px;
+      background: linear-gradient(45deg, #fd5949, #d6249f, #285AEB);
     }
   </style>
 </head>
 <body>
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
   <header class="mobile-header">
     <div class="logo-area">
       <img src="logo.png" alt="Logo" class="logo">
@@ -162,12 +233,12 @@
   <section class="image-gallery">
     <button class="arrow left" onclick="scrollGallery(-1)"><i class="fas fa-chevron-left"></i></button>
     <div class="gallery-track" id="galleryTrack">
-      <img src="carrossel1.jpg" alt="Licor Canelinha 1">
-      <img src="carrossel2.jpg" alt="Licor Canelinha 2">
-      <img src="carrossel3.jpg" alt="Licor Canelinha 3">
-      <img src="carrossel4.jpg" alt="Licor Canelinha 4">
-      <img src="carrossel5.jpg" alt="Licor Canelinha 5">
-      <img src="carrossel6.jpg" alt="Licor Canelinha 6">
+      <img src="carrossel1.jpg" alt="1">
+      <img src="carrossel2.jpg" alt="2">
+      <img src="carrossel3.jpg" alt="3">
+      <img src="carrossel4.jpg" alt="4">
+      <img src="carrossel5.jpg" alt="5">
+      <img src="carrossel6.jpg" alt="6">
     </div>
     <button class="arrow right" onclick="scrollGallery(1)"><i class="fas fa-chevron-right"></i></button>
   </section>
@@ -219,20 +290,19 @@
   </section>
 
   <footer>
+    <div class="footer-logo">Canelinha</div>
+    <div class="footer-sub">Bebidas Petisken</div>
+    <p><a href="mailto:contato@canelinha.com">contato@canelinha.com</a></p>
     <p>Canelinha Bebidas Petisken - Desenvolvido pela Hexatec</p>
   </footer>
 
+  <a href="https://wa.me/5514998527316" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="floating-btn floating-instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+
   <script>
     function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      nav.classList.toggle('active');
-
-      document.addEventListener('click', function closeMenuOutside(e) {
-        if (!nav.contains(e.target) && !e.target.closest('.menu-toggle')) {
-          nav.classList.remove('active');
-          document.removeEventListener('click', closeMenuOutside);
-        }
-      });
+      document.getElementById('mobileNav').classList.toggle('active');
+      document.getElementById('overlay').classList.toggle('active');
     }
 
     function scrollGallery(direction) {
