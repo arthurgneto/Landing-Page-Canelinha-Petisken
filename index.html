@@ -6,21 +6,17 @@
   <title>Licor Canelinha</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      background-color: #2c0f0a;
+      color: #fff8f0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #2e0b06;
-      color: #fff5eb;
+      margin: 0;
     }
 
-    .mobile-header {
-      background: #49120B;
+    header.mobile-header {
+      background-color: #49120B;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -37,13 +33,7 @@
 
     .logo {
       height: 50px;
-      margin-right: 10px;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
+      margin-right: 0.5rem;
     }
 
     .logo-text .canelinha {
@@ -52,39 +42,46 @@
     }
 
     .logo-text .sub {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      color: #ddd;
     }
 
     .menu-toggle {
       background: none;
       border: none;
-      color: white;
       font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
     }
 
     .mobile-nav {
       position: fixed;
       top: 0;
-      left: -250px;
-      width: 200px;
+      left: -100%;
+      width: 250px;
       height: 100%;
-      background: #A52304;
+      background-color: #49120B;
+      padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
-      padding-top: 4rem;
-      gap: 1rem;
-      transition: left 0.3s ease;
-      z-index: 1100;
+      gap: 1.5rem;
+      transition: left 0.3s ease-in-out;
+      z-index: 9999;
     }
 
     .mobile-nav.active {
       left: 0;
     }
 
+    .mobile-nav h3 {
+      color: #fff8f0;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
     .mobile-nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
-      padding: 1rem;
       font-weight: bold;
     }
 
@@ -94,8 +91,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.6);
-      z-index: 1000;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9998;
       display: none;
     }
 
@@ -103,201 +100,101 @@
       display: block;
     }
 
-    .image-gallery {
-      position: relative;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 1rem 0;
-      background-color: #3a0e09;
-    }
-
-    .gallery-track {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-    }
-
-    .gallery-track img {
-      height: 200px;
-      margin-right: 1rem;
-      border-radius: 10px;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.5);
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
-
-    section {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #A52304;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
-      background: #49120B;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-    }
-
-    footer .footer-logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    footer .footer-sub {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .floating-btn {
+    .floating-buttons {
       position: fixed;
       bottom: 80px;
       right: 20px;
-      background: #25d366;
-      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-buttons a {
       width: 50px;
       height: 50px;
       border-radius: 50%;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      align-items: center;
       text-decoration: none;
+      font-size: 1.2rem;
     }
 
-    .floating-instagram {
-      bottom: 20px;
-      background: linear-gradient(45deg, #fd5949, #d6249f, #285AEB);
+    .whatsapp-btn {
+      background-color: #25d366;
+      color: white;
+    }
+
+    .instagram-btn {
+      background-color: white;
+      color: black;
+    }
+
+    footer {
+      background-color: #A52304;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer .logo {
+      height: 60px;
+    }
+
+    footer .footer-text {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    footer .footer-sub {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #f0e6e0;
     }
   </style>
 </head>
 <body>
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
   <header class="mobile-header">
     <div class="logo-area">
       <img src="logo.png" alt="Logo" class="logo">
       <div class="logo-text">
-        <span class="canelinha">Canelinha</span>
+        <span class="canelinha">Canelinha</span><br>
         <span class="sub">Bebidas Petisken</span>
       </div>
     </div>
     <button class="menu-toggle" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
     </button>
-    <nav class="mobile-nav" id="mobileNav">
-      <a href="#sobre">Sobre a Canelinha</a>
-      <a href="#comprar">Onde Comprar</a>
-      <a href="#contato">Contato</a>
-    </nav>
   </header>
 
-  <section class="image-gallery">
-    <button class="arrow left" onclick="scrollGallery(-1)"><i class="fas fa-chevron-left"></i></button>
-    <div class="gallery-track" id="galleryTrack">
-      <img src="carrossel1.jpg" alt="1">
-      <img src="carrossel2.jpg" alt="2">
-      <img src="carrossel3.jpg" alt="3">
-      <img src="carrossel4.jpg" alt="4">
-      <img src="carrossel5.jpg" alt="5">
-      <img src="carrossel6.jpg" alt="6">
-    </div>
-    <button class="arrow right" onclick="scrollGallery(1)"><i class="fas fa-chevron-right"></i></button>
-  </section>
+  <div class="mobile-nav" id="mobileNav">
+    <h3>Home</h3>
+    <a href="#sobre">Sobre a Canelinha</a>
+    <a href="#comprar">Onde Comprar</a>
+    <a href="#contato">Contato</a>
+  </div>
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <section class="hero">
-    <h1>Licor Canelinha: O Toque Perfeito para Seus Momentos.</h1>
-    <p>Descubra a intensidade e o aroma da canela em cada gota. Ideal para celebrar, presentear ou simplesmente saborear.</p>
-    <a href="https://wa.me/5514998527316" class="btn">Compre o Seu Agora!</a>
-  </section>
+  <div class="floating-buttons">
+    <a href="https://wa.me/5514998527316" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="instagram-btn" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
 
-  <section id="beneficios">
-    <h2>Por que Canelinha?</h2>
-    <ul>
-      <li>Sabor Artesanal e Inconfundível</li>
-      <li>Versátil: Puro, em Drinks ou Sobremesas</li>
-      <li>Ingredientes Selecionados</li>
-      <li>Tradição e Qualidade em Cada Garrafa</li>
-    </ul>
-  </section>
-
-  <section id="sobre">
-    <h2>Nossa Essência em Cada Gota</h2>
-    <p>Desde nossa origem em Bauru, dedicamos paixão e cuidado para criar um licor de canela único. A Canelinha é mais que uma bebida; é a celebração do sabor, da tradição e de momentos especiais.</p>
-  </section>
-
-  <section id="depoimentos">
-    <h2>Quem Experimentou, Aprovou!</h2>
-    <blockquote>"Absolutamente delicioso! O Licor Canelinha transformou minhas noites. Sabor autêntico e inesquecível." – Maria Eduarda, Bauru/SP</blockquote>
-    <blockquote>"Presenteei meus amigos e todos amaram! Um licor de altíssima qualidade que surpreende. Virei fã!" – Ricardo V., São Paulo/SP</blockquote>
-  </section>
-
-  <section id="comprar">
-    <a href="https://wa.me/5514998527316" class="btn">Compre Online Agora!</a>
-    <h2>Garanta o Seu Licor Canelinha!</h2>
-    <p>Ou encontre-nos nas melhores lojas de Bauru e região:</p>
-    <ul>
-      <li>Empório Sabor Real – Rua das Canelas, 123</li>
-      <li>Adega Bauru – Av. Brasil, 456</li>
-      <li>Bar do Zeca – Rua da Alegria, 789</li>
-    </ul>
-  </section>
-
-  <section id="contato">
-    <h2>Dúvidas ou Parcerias?</h2>
-    <p>Entre em contato conosco, teremos prazer em atendê-lo(a)!</p>
-    <p><a href="https://wa.me/5514998527316">(14) 98528-7316</a></p>
-    <p><a href="mailto:contato@canelinha.com">contato@canelinha.com</a></p>
-    <p><a href="https://www.instagram.com/canelinha_bebidaspetisken/">@canelinha_bebidaspetisken</a></p>
-  </section>
+  <!-- Resto do conteúdo -->
 
   <footer>
-    <div class="footer-logo">Canelinha</div>
+    <img src="logo.png" alt="Logo" class="logo">
+    <div class="footer-text">Canelinha</div>
     <div class="footer-sub">Bebidas Petisken</div>
-    <p><a href="mailto:contato@canelinha.com">contato@canelinha.com</a></p>
+    <p><a href="mailto:contato@canelinha.com" style="color:white">contato@canelinha.com</a></p>
     <p>Canelinha Bebidas Petisken - Desenvolvido pela Hexatec</p>
   </footer>
-
-  <a href="https://wa.me/5514998527316" class="floating-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="floating-btn floating-instagram" target="_blank"><i class="fab fa-instagram"></i></a>
 
   <script>
     function toggleMenu() {
@@ -305,10 +202,9 @@
       document.getElementById('overlay').classList.toggle('active');
     }
 
-    function scrollGallery(direction) {
-      const track = document.getElementById('galleryTrack');
-      const scrollAmount = 300;
-      track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    function closeMenu() {
+      document.getElementById('mobileNav').classList.remove('active');
+      document.getElementById('overlay').classList.remove('active');
     }
   </script>
 </body>
