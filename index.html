@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Licor Canelinha</title>
+
+  <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fff8f0;
+      color: #3e2723;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    header {
+      background-color: #5d4037;
+      padding: 0.8rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    header .logo {
+      height: 600px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border: 2px solid #fff;
+      border-radius: 25px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #fff;
+      color: #5d4037;
+    }
+
+    header .social {
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    header .social:hover {
+      color: #a1887f;
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .carousel-slider {
+      display: flex;
+      gap: 0;
+      animation: scroll 60s linear infinite;
+    }
+
+    .carousel-slider img {
+      width: 320px;
+      height: 160px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+  .hero {
+  background: url('licor-hero.jpg') no-repeat center center;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+      animation: slideInLeft 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .hero p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      position: relative;
+      animation: slideInLeft 2s ease-out forwards;
+      opacity: 0;
+    }
+
+    .btn {
+      background: #d2691e;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+      transition: background 0.3s ease;
+      position: relative;
+      animation: slideInRight 2s ease-out forwards;
+      opacity: 0;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn:hover {
+      background: #a0522d;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 1rem;
+      color: #6d4c41;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+    }
+
+    footer {
+      background-color: #5d4037;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    footer img {
+      height: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      z-index: 999;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes slideInLeft {
+      0% { transform: translateX(-100px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      0% { transform: translateX(100px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  header .logo {
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  header .social {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+
+      header .logo {
+        margin-bottom: 0.5rem;
+      }
+
+      header .social {
+        font-size: 1.4rem;
+      }
+    
+  </style>
+</head>
+<body onscroll="revealSections()">
+
+  <header>
+    <img src="logo.png" alt="Logo Licor Canelinha" class="logo" />
+    <nav>
+      <a href="#sobre">Sobre a Canelinha</a>
+      <a href="#comprar">Onde Comprar</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <a href="https://www.instagram.com/canelinha_bebidaspetisken/" target="_blank" class="social" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </header>
+
+  <div class="carousel-container" aria-label="Carrossel de imagens">
+    <div class="carousel-slider">
+      <img src="carrossel1.jpg" alt="Licor Canelinha 1" />
+      <img src="carrossel2.jpg" alt="Licor Canelinha 2" />
+      <img src="carrossel3.jpg" alt="Licor Canelinha 3" />
+      <img src="carrossel4.jpg" alt="Licor Canelinha 4" />
+      <img src="carrossel5.jpg" alt="Licor Canelinha 5" />
+      <img src="carrossel6.jpg" alt="Licor Canelinha 6" />
+      <!-- repete as imagens para carrossel infinito -->
+      <img src="carrossel1.jpg" alt="Licor Canelinha 1" />
+      <img src="carrossel2.jpg" alt="Licor Canelinha 2" />
+      <img src="carrossel3.jpg" alt="Licor Canelinha 3" />
+      <img src="carrossel4.jpg" alt="Licor Canelinha 4" />
+      <img src="carrossel5.jpg" alt="Licor Canelinha 5" />
+      <img src="carrossel6.jpg" alt="Licor Canelinha 6" />
+    </div>
+  </div>
+
+  <section class="hero" aria-label="Apresentação do Licor Canelinha">
+    <h1>Licor Canelinha: O Toque Perfeito para Seus Momentos.</h1>
+    <p>Descubra a intensidade e o aroma da canela em cada gota. Ideal para celebrar, presentear ou simplesmente saborear.</p>
+    <a href="https://wa.me/5514998527316?text=Ol%C3%A1!%20Quero%20comprar%20o%20Licor%20Canelinha!" class="btn" target="_blank" rel="noopener">Compre o Seu Agora!</a>
+  </section>
+
+  <section id="beneficios">
+    <h2>Por que Canelinha?</h2>
+    <ul>
+      <li>Sabor Artesanal e Inconfundível</li>
+      <li>Versátil: Puro, em Drinks ou Sobremesas</li>
+      <li>Ingredientes Selecionados</li>
+      <li>Tradição e Qualidade em Cada Garrafa</li>
+    </ul>
+  </section>
+
+  <section id="sobre">
+    <h2>Nossa Essência em Cada Gota</h2>
+    <p>Desde nossa origem em Bauru, dedicamos paixão e cuidado para criar um licor de canela único. A Canelinha é mais que uma bebida; é a celebração do sabor, da tradição e de momentos especiais.</p>
+  </section>
+
+  <section id="depoimentos">
+    <h2>Quem Experimentou, Aprovou!</h2>
+    <blockquote>"Absolutamente delicioso! O Licor Canelinha transformou minhas noites. Sabor autêntico e inesquecível." – Maria Eduarda, Bauru/SP</blockquote>
+    <blockquote>"Presenteei meus amigos e todos amaram! Um licor de altíssima qualidade que surpreende. Virei fã!" – Ricardo V., São Paulo/SP</blockquote>
+  </section>
+
+  <section id="comprar">
+    <a href="https://wa.me/5514998527316?text=Ol%C3%A1!%20Quero%20comprar%20o%20Licor%20Canelinha!" class="btn" target="_blank" rel="noopener">Compre Online Agora!</a>
+    <h2>Garanta o Seu Licor Canelinha!</h2>
+    <p>Ou encontre-nos nas melhores lojas de Bauru e região:</p>
+    <ul>
+      <li>Empório Sabor Real – Rua das Canelas, 123</li>
+      <li>Adega Bauru – Av. Brasil, 456</li>
+      <li>Bar do Zeca – Rua da Alegria, 789</li>
+    </ul>
+  </section>
+
+  <section id="contato">
+    <h2>Dúvidas ou Parcerias?</h2>
+    <p>Entre em contato conosco, teremos prazer em atendê-lo(a)!</p>
+    <p><a href="https://wa.me/5514998527316" target="_blank" rel="noopener">(14) 98528-7316</a></p>
+    <p><a href="mailto:contato@canelinha.com">contato@canelinha.com</a></p>
+    <p><a href="https://www.instagram.com/canelinha_bebidaspetisken/" target="_blank" rel="noopener">@canelinha_bebidaspetisken</a></p>
+  </section>
+
+  <footer>
+    <img src="logo.png" alt="Logo Licor Canelinha" />
+    <p>© 2024 Licor Canelinha. Todos os direitos reservados.</p>
+    <p><a href="#" style="color: #fff; text-decoration: underline;">Política de Privacidade</a> | <a href="#" style="color: #fff; text-decoration: underline;">Termos de Uso</a></p>
+  </footer>
+
+  <!-- WhatsApp flutuante -->
+  <a href="https://wa.me/5514998527316?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Licor%20Canelinha!" class="whatsapp-button" target="_blank" aria-label="Contato via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    function revealSections() {
+      document.querySelectorAll('section').forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.classList.add('reveal');
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', revealSections);
+    window.addEventListener('scroll', revealSections);
+  </script>
+
+</body>
+</html>
