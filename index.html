@@ -6,7 +6,6 @@
   <title>Licor Canelinha</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -21,7 +20,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: auto;
+      flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -47,6 +46,17 @@
       display: block;
     }
 
+    .desktop-menu {
+      display: none;
+      gap: 1.5rem;
+    }
+
+    .desktop-menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     .hamburger {
       font-size: 1.8rem;
       color: #fff;
@@ -57,7 +67,7 @@
       position: fixed;
       top: 0;
       left: -250px;
-      width: 220px;
+      width: 250px;
       height: 100vh;
       background-color: #A52304;
       color: #fff;
@@ -70,10 +80,9 @@
       left: 0;
     }
 
-    .mobile-menu h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #fff;
+    .mobile-menu h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
     }
 
     .mobile-menu a {
@@ -149,40 +158,31 @@
       background: linear-gradient(90deg, #49120B, #A52304);
       color: #fff;
       text-align: center;
-      padding: 2rem 1rem 1rem;
+      padding: 2rem 1rem 0.5rem;
     }
 
-    footer .footer-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
+    footer .logo-area {
+      justify-content: center;
       margin-bottom: 1rem;
     }
 
-    footer .footer-logo img {
-      height: 50px;
-    }
-
-    footer .footer-logo strong {
-      font-size: 1.4rem;
-    }
-
-    footer .footer-logo span {
-      font-size: 0.9rem;
+    footer img {
+      height: 40px;
+      margin-right: 1rem;
     }
 
     footer p:last-child {
+      margin-top: 1rem;
       font-size: 0.9rem;
       color: #e0e0e0;
     }
 
     .whatsapp-button, .instagram-button {
       position: fixed;
-      right: 20px;
+      bottom: 20px;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -193,20 +193,20 @@
     }
 
     .whatsapp-button {
-      bottom: 90px;
+      right: 20px;
       background-color: #25D366;
       color: white;
     }
 
     .instagram-button {
-      bottom: 20px;
-      background-color: #000;
-      color: white;
+      right: 90px;
+      background-color: #fff;
+      color: #000;
     }
 
     @media (min-width: 768px) {
-      .image-gallery img {
-        width: 33.33vw;
+      .desktop-menu {
+        display: flex;
       }
 
       .hamburger {
@@ -215,6 +215,10 @@
 
       .mobile-menu {
         display: none;
+      }
+
+      .image-gallery img {
+        width: 33.33vw;
       }
     }
   </style>
@@ -229,13 +233,18 @@
         <span>Bebidas Petisken</span>
       </div>
     </div>
+    <nav class="desktop-menu">
+      <a href="#sobre">Sobre a Canelinha</a>
+      <a href="#comprar">Onde Comprar</a>
+      <a href="#contato">Contato</a>
+    </nav>
     <div class="hamburger" onclick="toggleMenu()">
       <i class="fas fa-bars"></i>
     </div>
   </header>
 
   <nav id="menu" class="mobile-menu">
-    <h3>🏠 Home</h3>
+    <h2>Home</h2>
     <a href="#sobre">Sobre a Canelinha</a>
     <a href="#comprar">Onde Comprar</a>
     <a href="#contato">Contato</a>
@@ -296,10 +305,12 @@
   </section>
 
   <footer>
-    <div class="footer-logo">
+    <div class="logo-area">
       <img src="logo.png" alt="Logo Canelinha">
-      <strong>Canelinha</strong>
-      <span>Bebidas Petisken</span>
+      <div class="logo-text">
+        <strong>Canelinha</strong>
+        <span>Bebidas Petisken</span>
+      </div>
     </div>
     <p>© 2024 Licor Canelinha. Todos os direitos reservados.</p>
     <p>Canelinha Bebidas Petisken - Desenvolvido pela Hexatec</p>
@@ -308,7 +319,6 @@
   <a href="https://wa.me/5514998527316" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i>
   </a>
-
   <a href="https://www.instagram.com/canelinha_bebidaspetisken/" class="instagram-button" target="_blank">
     <i class="fab fa-instagram"></i>
   </a>
@@ -317,15 +327,6 @@
     function toggleMenu() {
       document.getElementById('menu').classList.toggle('open');
     }
-
-    // Fecha o menu clicando fora
-    window.addEventListener('click', function (e) {
-      const menu = document.getElementById('menu');
-      const hamburger = document.querySelector('.hamburger');
-      if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
-    });
   </script>
 </body>
 </html>
