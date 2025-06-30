@@ -1,0 +1,21 @@
+{
+  "name": "Licor Canelinha",
+  "short_name": "Canelinha",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8f0",
+  "theme_color": "#A52304",
+  "description": "Licor artesanal de canela de Bauru - Licor Canelinha",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
